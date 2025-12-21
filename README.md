@@ -7,9 +7,8 @@
 https://github.com/Mr-friendly-Spy/Office_Tweaks.git
 
 ## Запуск программы 🔧
-- Скачать .exe файл из папки dist в GitHub репозитории
+- Скачать .py файл из GitHub репозитории
 - Дважды счелкнуть по нему левой кнопкой мыши
-- Или использовать Пакетный режим (CLI)
 
 ## 📋 Описание
 ### Скрипт на Python извлекает информацию об автосервисах Москвы с сайта [msk.spravker.ru/avtoservisy-avtotehcentry](https://msk.spravker.ru/avtoservisy-avtotehcentry/), включая:
