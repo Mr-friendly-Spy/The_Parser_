@@ -96,18 +96,6 @@ def extract_organizations(html_content):
             reviews_text = f"{reviews_count} | {comment}"
 
         org_data['reviews'] = reviews_text
-
-        # Извлекаем дополнительные услуги (если есть)
-        services = []
-        services_match = re.search(r'<span class="org-widget-header__meta">(.*?)</span>', block)
-        if services_match and 'org-widget-header__meta--location' not in services_match.group(0):
-            services_text = services_match.group(1).strip()
-            # Убираем лишние пробелы и переносы строк
-            services_text = re.sub(r'\s+', ' ', services_text)
-            services = [s.strip() for s in services_text.split(',') if s.strip()]
-
-        org_data['services'] = ', '.join(services) if services else 'Нет информации'
-
         organizations.append(org_data)
 
     return organizations
@@ -120,7 +108,7 @@ def save_to_csv(data, filename='avtoservisy.csv'):
         return
 
     # Определяем заголовки столбцов
-    fieldnames = ['Название организации', 'Адрес', 'Телефоны', 'Часы работы', 'Отзывы/Рейтинг', 'Услуги']
+    fieldnames = ['Название организации', 'Адрес', 'Телефоны', 'Часы работы', 'Отзывы/Рейтинг']
 
     try:
         with open(filename, 'w', encoding='utf-8-sig', newline='') as csvfile:
@@ -137,7 +125,7 @@ def save_to_csv(data, filename='avtoservisy.csv'):
                     'Телефоны': org['phones'],
                     'Часы работы': org['hours'],
                     'Отзывы/Рейтинг': org['reviews'],
-                    'Услуги': org['services']
+
                 })
 
         print(f"Данные успешно сохранены в файл: {filename}")
@@ -176,7 +164,7 @@ def main():
                 print(f"   Телефоны: {org['phones']}")
                 print(f"   Часы работы: {org['hours']}")
                 print(f"   Отзывы: {org['reviews']}")
-                print(f"   Услуги: {org['services']}")
+
             print("=" * 100)
 
             # Сохраняем в CSV
